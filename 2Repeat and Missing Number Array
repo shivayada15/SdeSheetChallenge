@@ -1,0 +1,23 @@
+public class Solution {
+    // DO NOT MODIFY THE ARGUMENTS WITH "final" PREFIX. IT IS READ ONLY
+    public int[] repeatedNumber(final int[] nums) {
+         int n=nums.length-1;
+        Arrays.sort(nums);
+        int x=0;
+        for(int i=0;i<nums.length-1;i++){
+            if(nums[i]==nums[i+1]){
+                x=nums[i];
+                break;
+            }
+        }
+        int[] ans=new int[2];
+        ans[0]=x;
+        int sos= n*(n+1);
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum=sum+nums[i];
+        }
+        ans[1]= sos/2 -sum+x;
+        return ans;
+    }
+}
