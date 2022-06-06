@@ -1,0 +1,20 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+       int n=prices.length;
+        if(n==1){
+            return 0;
+        }
+        int maxprofit=0,s=0,e=1;
+        while(e<n){
+            if(prices[s]<prices[e]){
+                maxprofit =Math.max(maxprofit, prices[e]-prices[s]);
+            }else{
+                s=e;
+            }
+            e++;
+        }
+        
+        return maxprofit;
+        
+    }
+}
