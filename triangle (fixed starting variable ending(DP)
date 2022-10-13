@@ -1,0 +1,54 @@
+//memoziation 
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int minimumPathSum(int[][] triangle, int n) {
+        // Write your code here.
+        int[][] dk=new int[n][n];
+          for(int i=0;i<n;i++){
+              for(int j=0;j<n;j++){
+                  dk[i][j]= -1;
+              }
+          }
+        return fun(0,0,triangle,n, dk);
+        
+    }
+    public static int fun(int i, int j, int[][] tri,int n,int[][] dk){
+        if(i==n-1){
+            return tri[n-1][j];
+        }
+        if(dk[i][j] != -1){
+            return dk[i][j];
+        }
+        int d= tri[i][j] + fun(i+1,j,tri,n,dk);
+        int dl=tri[i][j] + fun(i+1,j+1,tri,n,dk);
+        
+        return dk[i][j] = Math.min(d,dl);
+    }
+    
+}
+
+//tabulation
+import java.util.* ;
+import java.io.*; 
+public class Solution {
+    public static int minimumPathSum(int[][] triangle, int n) {
+        // Write your code here.
+        int[][] dk=new int[n][n];
+          for(int j=0;j<n;j++){
+              dk[n-1][j]= triangle[n-1][j];
+          }
+        for(int i=n-2;i>=0;i--){
+            for(int j=i;j>=0;j--){
+                int d= triangle[i][j] + dk[i+1][j];
+                int dl=triangle[i][j]+ dk[i+1][j+1];
+                dk[i][j]= Math.min(d,dl);
+            }
+        }
+      
+        return dk[0][0];
+        
+    }
+ 
+    
+}
